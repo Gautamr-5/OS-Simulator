@@ -1,68 +1,87 @@
 # OS Scheduling Simulator 🚀
 
-A comprehensive, production-ready CPU Scheduling Simulator built with a high-performance **C++17** core backend and a stunning, animated **Next.js (React + Tailwind)** frontend.
-
-## Features
-
-- **8 Classic Algorithms**:
-  - First Come First Serve (FCFS)
-  - Shortest Job First (SJF)
-  - Shortest Remaining Time First (SRTF)
-  - Round Robin (RR)
-  - Priority (Preemptive & Non-Preemptive)
-  - Highest Response Ratio Next (HRRN)
-  - Multilevel Queue (MLQ)
-- **High-Performance Core**: Written entirely in modern C++ utilizing Object-Oriented patterns, the `Scheduler` interface allows easy extensions.
-- **Beautiful Visualizations**: A modern UI built with Next.js and Framer Motion visualizes the exact execution time via an animated Gantt Chart.
-- **Vercel Ready**: The Next.js frontend has been optimized with native TypeScript algorithms in its API route to allow instant serverless deployment without a standalone backend server.
+A comprehensive, production-ready CPU Scheduling Simulator. This project bridges a high-performance **C++17** backend engine with a stunning, animated **Next.js (React + Tailwind)** frontend to visualize how operating systems handle process scheduling.
 
 ---
 
-## Architecture Overview
+## 📖 Project Overview
+CPU scheduling is a process which allows one process to use the CPU while the execution of another process is on hold (in waiting state) due to unavailability of any resource like I/O etc, thereby making full use of CPU. The aim of CPU scheduling is to make the system efficient, fast, and fair.
 
-The repository is divided into two distinct parts to maintain a clean separation of concerns:
-
-### 1. `/backend` (C++ Engine)
-Contains the core C++ codebase. This is a standalone project that can be compiled and used directly from the CLI.
-- `include/`: Header files defining the `Scheduler` interface and `Process` state.
-- `src/`: Implementations of all 8 algorithms.
-- `tests/`: Comprehensive Google Test suites ensuring the mathematical accuracy of every algorithm.
-
-### 2. `/frontend` (Next.js UI)
-A modern React application that provides an interactive dashboard to input processes and visualize the scheduling algorithms in real-time.
-- `src/app/api/schedule/route.ts`: Contains the Vercel-optimized TypeScript ports of the algorithms for serverless execution.
-- `src/components/`: Reusable React components (`GanttChart`, `StatisticsPanel`, etc.) powered by Tailwind CSS.
+This simulator models **8 classical OS scheduling algorithms** and provides interactive, animated **Gantt Charts** alongside execution statistics (Average Waiting Time, Turnaround Time, CPU Utilization, and Context Switches).
 
 ---
 
-## Getting Started
+## 🛠️ Technology Stack & Architecture
 
-### Running the Frontend locally
-1. Navigate into the frontend folder:
+This project is built using a decoupled architecture, ensuring the computational heavy-lifting is separated from the UI presentation layer.
+
+### 1. The Engine: C++17 (Located in `/backend`)
+The core algorithms and data structures are implemented entirely in object-oriented C++.
+*   **Why C++?**: C++ provides the raw performance and low-level control required for accurate system-level simulations.
+*   **Google Test**: Unit testing is heavily utilized via the `gtest` framework to ensure mathematical accuracy for edge cases (preemptions, idle times).
+*   **CMake**: Used as the build system to manage compilation across different platforms.
+
+### 2. The Visual Bridge: Next.js & React (Located in `/frontend`)
+The presentation layer is a modern web application built on the Next.js framework.
+*   **TypeScript**: Ensures type safety across the application.
+*   **Tailwind CSS**: Utilized for rapid, utility-first styling to create a sleek dark-mode, glassmorphic aesthetic.
+*   **Framer Motion**: Powers the buttery-smooth micro-animations, particularly the dynamic rendering of the Gantt chart timeline.
+*   **Serverless Optimization**: For instant deployment to platforms like Vercel, the C++ algorithms have also been mapped natively into the Next.js API route (`app/api/schedule/route.ts`).
+
+---
+
+## ⚙️ Algorithms Implemented
+
+| Algorithm | Preemptive? | Description |
+| :--- | :---: | :--- |
+| **First Come First Serve (FCFS)** | No | Processes are dispatched according to their arrival time. Simple but can suffer from the convoy effect. |
+| **Shortest Job First (SJF)** | No | Selects the process with the smallest execution time. Optimal for minimizing waiting time. |
+| **Shortest Remaining Time First (SRTF)** | Yes | The preemptive version of SJF. If a new process arrives with a shorter burst time than the currently running process, the current process is preempted. |
+| **Round Robin (RR)** | Yes | Each process is assigned a fixed time slot (quantum) in a cyclic way. Excellent for time-sharing systems. |
+| **Priority Scheduling** | No | Processes are executed based on priority. (Lower number = Higher priority). |
+| **Preemptive Priority** | Yes | If a newly arriving process has a higher priority than the currently running process, it preempts it. |
+| **Highest Response Ratio Next (HRRN)** | No | Mitigates starvation by factoring in how long a process has been waiting. `Ratio = (Wait + Burst) / Burst` |
+| **Multilevel Queue (MLQ)** | Yes | Partitions the ready queue into multiple distinct queues (e.g., Foreground RR, Background FCFS) based on process properties. |
+
+---
+
+## 🚀 How to Run the Project
+
+### Option A: Run the Web UI (Recommended)
+This requires Node.js installed on your system.
+
+1. Navigate to the frontend directory:
    ```bash
    cd frontend
    ```
-2. Install dependencies:
+2. Install the necessary dependencies:
    ```bash
    npm install
    ```
-3. Start the development server:
+3. Start the Next.js development server:
    ```bash
    npm run dev
    ```
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. Open [http://localhost:3000](http://localhost:3000) in your web browser.
 
-### Compiling the C++ Backend (Optional)
-If you want to use the native C++ CLI wrappers instead of the web UI:
-1. Navigate to the backend folder:
+### Option B: Compile the C++ Engine Locally
+If you wish to interact with the raw C++ engine via CLI or run the Google Tests:
+
+1. Navigate to the backend directory:
    ```bash
    cd backend
    ```
-2. Build the project using CMake or directly with g++:
+2. Compile the server executable using `g++` (requires MinGW or similar compiler):
    ```bash
    g++ -std=c++14 -I include src/core/*.cpp src/algorithms/*.cpp src/utils/*.cpp src/server.cpp -o OSServer.exe
    ```
+3. Execute with arguments (Algorithm, Process String):
+   ```bash
+   .\OSServer.exe srtf "1,0,4,2;2,1,3,3"
+   ```
 
-## Documentation
+---
 
-Full testing and implementation walkthroughs can be found in the Git history. The project was constructed in 4 phases, focusing first on core infrastructure, advanced preemptive algorithms, data serialization (CSV), and finally the visual web bridge.
+## 📊 Vercel Deployment
+This repository is fully optimized for 1-click deployment on Vercel. 
+Simply import this Git repository in your Vercel Dashboard, and **ensure you set the "Root Directory" to `frontend`**. Vercel will automatically detect the Next.js configuration and deploy the UI globally.
