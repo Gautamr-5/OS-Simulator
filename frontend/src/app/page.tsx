@@ -72,7 +72,7 @@ export default function Home() {
           <div>
             <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-fuchsia-400 flex items-center gap-3">
               <Cpu className="text-indigo-400" size={36} />
-              OS Scheduler Pro
+              OS Simulator
             </h1>
             <p className="text-gray-400 mt-2">Production-Level CPU Scheduling Simulator</p>
           </div>
