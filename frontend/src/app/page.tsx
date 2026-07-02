@@ -74,7 +74,6 @@ export default function Home() {
               <Cpu className="text-indigo-400" size={36} />
               OS Simulator
             </h1>
-            <p className="text-gray-400 mt-2">Production-Level CPU Scheduling Simulator</p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 items-end sm:items-center bg-white/5 p-4 rounded-xl border border-white/10">
