@@ -70,13 +70,13 @@ export default function Home() {
         {/* Header */}
         <header className="py-8 border-b border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div>
-            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-fuchsia-400 flex items-center gap-3">
-              <Cpu className="text-indigo-400" size={36} />
+            <h1 className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-fuchsia-400 flex flex-wrap items-center gap-2 sm:gap-3">
+              <Cpu className="text-indigo-400" size={32} />
               OS Simulator
             </h1>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-end sm:items-center bg-white/5 p-4 rounded-xl border border-white/10">
+          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center w-full md:w-auto bg-white/5 p-4 rounded-xl border border-white/10">
             <div className="flex flex-col">
               <label className="text-xs text-gray-400 mb-1">Algorithm</label>
               <select 
@@ -106,7 +106,7 @@ export default function Home() {
             <button 
               onClick={handleSimulate}
               disabled={loading || processes.length === 0}
-              className="flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-2 rounded-lg font-semibold transition-all shadow-[0_0_20px_rgba(99,102,241,0.4)] disabled:opacity-50 disabled:cursor-not-allowed mt-4 sm:mt-0 h-[42px]"
+              className="flex justify-center items-center gap-2 w-full sm:w-auto bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-2 rounded-lg font-semibold transition-all shadow-[0_0_20px_rgba(99,102,241,0.4)] disabled:opacity-50 disabled:cursor-not-allowed mt-4 sm:mt-0 h-[42px]"
             >
               {loading ? <Loader2 size={18} className="animate-spin" /> : <Play size={18} />}
               {loading ? "Simulating..." : "Run Simulator"}

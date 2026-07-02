@@ -50,7 +50,7 @@ export default function ProcessInput({ processes, setProcesses }: ProcessInputPr
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 z-0"></div>
       
       <div className="relative z-10">
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
           <h2 className="text-xl font-semibold text-white flex items-center gap-2">
             <Settings className="text-indigo-400" size={20} /> Process Configuration
           </h2>
@@ -101,7 +101,7 @@ export default function ProcessInput({ processes, setProcesses }: ProcessInputPr
                       min="0"
                       value={p.arrivalTime}
                       onChange={(e) => handleChange(p.id, "arrivalTime", e.target.value)}
-                      className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                      className="w-full min-w-[70px] bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
                     />
                   </td>
                   <td className="py-3 pr-4">
@@ -110,7 +110,7 @@ export default function ProcessInput({ processes, setProcesses }: ProcessInputPr
                       min="1"
                       value={p.burstTime}
                       onChange={(e) => handleChange(p.id, "burstTime", e.target.value)}
-                      className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                      className="w-full min-w-[70px] bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
                     />
                   </td>
                   <td className="py-3 pr-4">
@@ -119,7 +119,7 @@ export default function ProcessInput({ processes, setProcesses }: ProcessInputPr
                       min="1"
                       value={p.priority}
                       onChange={(e) => handleChange(p.id, "priority", e.target.value)}
-                      className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                      className="w-full min-w-[70px] bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
                     />
                   </td>
                   <td className="py-3 text-center">
