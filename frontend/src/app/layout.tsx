@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "OS Simulator",
-  description: "Production-Level CPU Scheduling Simulator",
+  description: "CPU Scheduling Simulator",
 };
 
 export default function RootLayout({
